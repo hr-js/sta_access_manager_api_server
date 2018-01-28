@@ -8,6 +8,9 @@ module.exports = async function(fastify, opt, next) {
     UPDATE_SCHEMA,
     PARTICIPANTS_SCHEMA,
   } = require('../assetes/schema');
+const ESClient = require('./client');
+// 初期化時にホスト名とポート番号を渡す
+const client = new ESClient('localhost',9200);
 
   fastify.post('/scan', SCAN_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /scan');
@@ -27,9 +30,9 @@ module.exports = async function(fastify, opt, next) {
 
   fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /register');
-    reply.send({
-      result: true,
-      message: 'success',
+    
+    client.create(req.body).then(response =>{
+      reply.send(response);
     });
   });
 
