@@ -1,5 +1,7 @@
 'use strict';
 
+const client = new (require('esclient'))();
+
 module.exports = async function(fastify, opt, next) {
   const {
     SCAN_SCHEMA,
@@ -11,10 +13,9 @@ module.exports = async function(fastify, opt, next) {
 
   fastify.post('/scan', SCAN_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /scan');
-    reply.send({
-      result: true,
-      message: 'success',
-    });
+
+    const result = await client.create();
+    reply.send(result);
   });
 
   fastify.post('/check', CHECK_SCHEMA, async (req, reply) => {
@@ -43,7 +44,13 @@ module.exports = async function(fastify, opt, next) {
 
   fastify.get('/participants', PARTICIPANTS_SCHEMA, async (req, reply) => {
     fastify.log.info('request: /participants');
-    reply.send({ hello: 'participants' });
+    reply.send([
+      {
+        name: 'John Doe',
+        porpose: 'study',
+        isEntry: true,
+      },
+    ]);
   });
 
   next();

@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/hr-js/sam_api_server.git",
+  "scripts": {
+    "http": "node server.js",
+    "http2": "NODE_HTTP=http2 node server.js"
+  },
   "author": "t-kurihara",
   "license": "MIT",
   "dependencies": {
@@ -11,6 +15,8 @@
   },
   "devDependencies": {
     "editorconfig": "^0.15.0",
-    "eslint": "^4.12.1"
+    "eslint": "^4.12.1",
+    "minimist": "^1.2.0",
+    "tap": "^11.0.1"
   }
 }

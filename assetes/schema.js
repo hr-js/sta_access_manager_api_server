@@ -11,11 +11,30 @@ module.exports = {
         },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
             message: { type: 'string' },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
+          },
+        },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
           },
         },
       },
@@ -31,11 +50,30 @@ module.exports = {
         },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
             message: { type: 'string' },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
+          },
+        },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
           },
         },
       },
@@ -52,11 +90,30 @@ module.exports = {
         },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             result: { type: 'boolean' },
             message: { type: 'string' },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
+          },
+        },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
           },
         },
       },
@@ -72,11 +129,30 @@ module.exports = {
           cardId: { type: 'string' },
         },
         response: {
-          200: {
+          '2xx': {
             type: 'object',
             properties: {
               result: { type: 'boolean' },
               message: { type: 'string' },
+            },
+          },
+          '4xx': {
+            type: 'object',
+            properties: {
+              error: {
+                type: 'object',
+                properties: {
+                  message: { type: 'string' },
+                },
+              },
+            },
+          },
+          '400': {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              message: { type: 'string' },
+              statusCode: { type: 'number' },
             },
           },
         },
@@ -86,7 +162,7 @@ module.exports = {
   PARTICIPANTS_SCHEMA: {
     schema: {
       response: {
-        200: {
+        '2xx': {
           type: 'array',
           items: {
             type: 'object',
@@ -95,6 +171,25 @@ module.exports = {
               porpose: { type: 'string' },
               isEntry: { type: 'boolean' },
             },
+          },
+        },
+        '4xx': {
+          type: 'object',
+          properties: {
+            error: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+              },
+            },
+          },
+        },
+        '400': {
+          type: 'object',
+          properties: {
+            error: { type: 'string' },
+            message: { type: 'string' },
+            statusCode: { type: 'number' },
           },
         },
       },
