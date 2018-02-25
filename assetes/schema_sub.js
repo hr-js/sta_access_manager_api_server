@@ -22,28 +22,22 @@ const VALIDATION_ERROR_RESPONSE = {
 };
 
 module.exports = {
-  ENTRY_SCHEMA: {
+  REGISTOR_SCHEMA: {
     schema: {
       body: {
         type: 'object',
-        required: ['id', 'purpose'],
+        required: ['id', 'cardId'],
         properties: {
           id: { type: 'string' },
-          porpose: { type: 'string' },
+          cardId: { type: 'string' },
         },
       },
       response: {
         '2xx': {
           type: 'object',
           properties: {
-            id: { type: 'string' },
-            user: {
-              type: 'object',
-              properties: {
-                name: { type: 'string' },
-                isEntry: { type: 'boolean' },
-              },
-            },
+            result: { type: 'boolean' },
+            message: { type: 'string' },
           },
         },
         '4xx': ANY_ERROR_RESPONSE,
@@ -55,48 +49,17 @@ module.exports = {
     schema: {
       body: {
         type: 'object',
-        required: ['id'],
+        required: ['id', 'cardId'],
         properties: {
           id: { type: 'string' },
-        },
-      },
-      response: {
-        200: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-          },
-        },
-        '4xx': ANY_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-      },
-    },
-  },
-  OUT_SCHEMA: {
-    schema: {
-      body: {
-        type: 'object',
-        required: ['id', 'user'],
-        properties: {
-          id: { type: 'string' },
-          user: {
-            type: 'object',
-            properties: {
-              mail: { type: 'string' },
-            },
-          },
+          cardId: { type: 'string' },
         },
         response: {
           '2xx': {
             type: 'object',
             properties: {
-              id: { type: 'string' },
-              user: {
-                type: 'object',
-                properties: {
-                  mail: { type: 'string' },
-                },
-              },
+              result: { type: 'boolean' },
+              message: { type: 'string' },
             },
           },
           '4xx': ANY_ERROR_RESPONSE,
@@ -105,7 +68,53 @@ module.exports = {
       },
     },
   },
-  USERS_SCHEMA: {
+  ENTRY_SCHEMA: {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['id', 'cardId'],
+        properties: {
+          id: { type: 'string' },
+          cardId: { type: 'string' },
+        },
+        response: {
+          '2xx': {
+            type: 'object',
+            properties: {
+              result: { type: 'boolean' },
+              message: { type: 'string' },
+            },
+          },
+          '4xx': ANY_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+        },
+      },
+    },
+  },
+  OUT_SCHEMA: {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['id', 'cardId'],
+        properties: {
+          id: { type: 'string' },
+          cardId: { type: 'string' },
+        },
+        response: {
+          '2xx': {
+            type: 'object',
+            properties: {
+              result: { type: 'boolean' },
+              message: { type: 'string' },
+            },
+          },
+          '4xx': ANY_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+        },
+      },
+    },
+  },
+  PARTICIPANTS_SCHEMA: {
     schema: {
       response: {
         '2xx': {

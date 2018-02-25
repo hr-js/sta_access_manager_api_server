@@ -1,13 +1,19 @@
 'use strict';
 
+//const client =
+//  process.env.NODE_ENV === 'test'
+//    ? require('../test/responseStub')
+//    : new (require('esclient'))();
+
+const {
+  ENTRY_SCHEMA,
+  CHECK_SCHEMA,
+  REGISTOR_SCHEMA,
+  UPDATE_SCHEMA,
+  USERS_SCHEMA,
+} = require('../assetes/schema');
+
 module.exports = async function(fastify, opt, next) {
-  const {
-    ENTRY_SCHEMA,
-    CHECK_SCHEMA,
-    REGISTOR_SCHEMA,
-    UPDATE_SCHEMA,
-    USERS_SCHEMA
-  } = require('../assetes/schema');
   const provider = require('./provider')('localhost', 9200);
   const handler = (response, reply) => {
     if (response.code === 1) {
