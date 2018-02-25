@@ -16,9 +16,13 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^8.0.53":
+"@types/node@*":
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+
+"@types/node@^8.0.54":
+  version "8.9.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.9.4.tgz#dfd327582a06c114eb6e0441fa3d6fab35edad48"
 
 "@types/pino@^4.7.0":
   version "4.7.0"
@@ -99,6 +103,7 @@ ajv@^5.2.3, ajv@^5.3.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
+<<<<<<< HEAD
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
@@ -110,6 +115,16 @@ align-text@^0.1.1, align-text@^0.1.3:
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
+=======
+ajv@^5.5.1:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
+  dependencies:
+    co "^4.6.0"
+    fast-deep-equal "^1.0.0"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.3.0"
+>>>>>>> develop
 
 ansi-align@^2.0.0:
   version "2.0.0"
@@ -807,9 +822,9 @@ editorconfig@^0.15.0:
     semver "^5.4.1"
     sigmund "^1.0.1"
 
-elasticsearch@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/elasticsearch/-/elasticsearch-14.0.0.tgz#560317ca87121a73c0895818ae291f5553857bda"
+elasticsearch@^14.1.0:
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/elasticsearch/-/elasticsearch-14.1.0.tgz#9a5e461fa3bacc1bd91411534650c63408121f81"
   dependencies:
     agentkeepalive "^2.2.0"
     chalk "^1.0.0"
@@ -1029,7 +1044,7 @@ fast-iterator@^0.2.1:
   dependencies:
     reusify "^1.0.3"
 
-fast-json-parse@^1.0.0, fast-json-parse@^1.0.2:
+fast-json-parse@^1.0.2, fast-json-parse@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/fast-json-parse/-/fast-json-parse-1.0.3.tgz#43e5c61ee4efa9265633046b770fb682a7577c4d"
 
@@ -1048,9 +1063,13 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
-fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.0, fast-safe-stringify@^1.2.1:
+fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-1.2.1.tgz#c4b2477dd585de4488aa6665d4acfae41462d999"
+
+fast-safe-stringify@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-1.2.3.tgz#9fe22c37fb2f7f86f06b8f004377dbf8f1ee7bc1"
 
 fastify-cli@^0.11.0:
   version "0.11.0"
@@ -1061,24 +1080,24 @@ fastify-cli@^0.11.0:
     pump "^1.0.2"
     update-notifier "^2.1.0"
 
-fastify@^0.35.3:
-  version "0.35.3"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-0.35.3.tgz#d88904c70c9fb75507c70f22969c46a45f382787"
+fastify@^0.35.7:
+  version "0.35.7"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-0.35.7.tgz#9474f9f6e3fc4d44799d459ca64257b4ca8e6b4d"
   dependencies:
-    "@types/node" "^8.0.53"
+    "@types/node" "^8.0.54"
     "@types/pino" "^4.7.0"
     abstract-logging "^1.0.0"
-    ajv "^5.3.0"
+    ajv "^5.5.1"
     avvio "^3.2.0"
     fast-iterator "^0.2.1"
     fast-json-stringify "^0.15.1"
     fastify-cli "^0.11.0"
-    find-my-way "^1.7.1"
+    find-my-way "^1.8.1"
     flatstr "^1.0.5"
     light-my-request "^1.1.1"
     middie "^2.1.1"
-    pino "^4.10.1"
-    pump "^1.0.3"
+    pino "^4.10.2"
+    pump "^2.0.0"
 
 fastq@^1.5.0:
   version "1.5.0"
@@ -1105,6 +1124,7 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
+<<<<<<< HEAD
 filename-regex@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
@@ -1129,6 +1149,11 @@ fill-range@^2.1.0:
 find-my-way@^1.7.1:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/find-my-way/-/find-my-way-1.8.0.tgz#91deed73f5d671e755c17791f2c2f3dd9c302a97"
+=======
+find-my-way@^1.8.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/find-my-way/-/find-my-way-1.10.1.tgz#90ff8a4edcfe688bdc732c43466aba1a6ca7c005"
+>>>>>>> develop
 
 find-up@^1.0.0:
   version "1.1.2"
@@ -1152,7 +1177,7 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flatstr@^1.0.4, flatstr@^1.0.5:
+flatstr@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/flatstr/-/flatstr-1.0.5.tgz#5b451b08cbd48e2eac54a2bbe0bf46165aa14be3"
 
@@ -2298,6 +2323,10 @@ minimist@~0.0.1:
   dependencies:
     minimist "0.0.8"
 
+moment@^2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -2611,16 +2640,16 @@ pino-colada@^1.4.0:
     pretty-ms "^2.1.0"
     split2 "^2.1.1"
 
-pino@^4.10.1:
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-4.10.2.tgz#77e93cdfa1cdb58f688cbb0abaebe67eb2f315f4"
+pino@^4.10.2:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-4.11.0.tgz#29ba036d065b1bea17647c4a42a1f7b8b37f8be0"
   dependencies:
     chalk "^2.3.0"
-    fast-json-parse "^1.0.0"
-    fast-safe-stringify "^1.2.1"
-    flatstr "^1.0.4"
-    pump "^1.0.3"
-    quick-format-unescaped "^1.1.1"
+    fast-json-parse "^1.0.3"
+    fast-safe-stringify "^1.2.3"
+    flatstr "^1.0.5"
+    pump "^2.0.1"
+    quick-format-unescaped "^1.1.2"
     split2 "^2.2.0"
 
 pkg-dir@^2.0.0:
@@ -2692,13 +2721,14 @@ pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
-pump@^1.0.2, pump@^1.0.3:
+pump@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/pump/-/pump-1.0.3.tgz#5dfe8311c33bbf6fc18261f9f34702c47c08a954"
   dependencies:
     end-of-stream "^1.1.0"
     once "^1.3.1"
 
+<<<<<<< HEAD
 punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
@@ -2718,6 +2748,18 @@ qs@~6.5.1:
 quick-format-unescaped@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-1.1.1.tgz#e77555ef3e66e105d4039e13ef79201284fee916"
+=======
+pump@^2.0.0, pump@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/pump/-/pump-2.0.1.tgz#12399add6e4cf7526d973cbc8b5ce2e2908b3909"
+  dependencies:
+    end-of-stream "^1.1.0"
+    once "^1.3.1"
+
+quick-format-unescaped@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-1.1.2.tgz#0ca581de3174becef25ac3c2e8956342381db698"
+>>>>>>> develop
   dependencies:
     fast-safe-stringify "^1.0.8"
 
