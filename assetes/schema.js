@@ -1,5 +1,26 @@
 'use strict';
 
+const ANY_ERROR_RESPONSE = {
+  type: 'object',
+  properties: {
+    error: {
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+    },
+  },
+};
+
+const VALIDATION_ERROR_RESPONSE = {
+  type: 'object',
+  properties: {
+    error: { type: 'string' },
+    message: { type: 'string' },
+    statusCode: { type: 'number' },
+  },
+};
+
 module.exports = {
   ENTRY_SCHEMA: {
     schema: {
@@ -8,11 +29,11 @@ module.exports = {
         required: ['id', 'purpose'],
         properties: {
           id: { type: 'string' },
-          porpose: { type: 'string' }
-        }
+          porpose: { type: 'string' },
+        },
       },
       response: {
-        200: {
+        '2xx': {
           type: 'object',
           properties: {
             id: { type: 'string' },
@@ -20,58 +41,38 @@ module.exports = {
               type: 'object',
               properties: {
                 name: { type: 'string' },
-                isEntry: { type: 'boolean' }
-              }
-            }
-          }
+                isEntry: { type: 'boolean' },
+              },
+            },
+          },
         },
-        400: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            error: {
-              type: 'object',
-              properties: {
-                message: { type: 'string' }
-              }
-            }
-          }
-        }
-      }
-    }
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+      },
+    },
   },
-  CHECK_SCHEMA: {
+  UPDATE_SCHEMA: {
     schema: {
       body: {
         type: 'object',
         required: ['id'],
         properties: {
-          id: { type: 'string' }
-        }
+          id: { type: 'string' },
+        },
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
-          }
-        },
-        400: {
-          type: 'object',
-          properties: {
             id: { type: 'string' },
-            error: {
-              type: 'object',
-              properties: {
-                message: { type: 'string' }
-              }
-            }
-          }
-        }
-      }
-    }
+          },
+        },
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+      },
+    },
   },
-  REGISTOR_SCHEMA: {
+  OUT_SCHEMA: {
     schema: {
       body: {
         type: 'object',
@@ -82,103 +83,45 @@ module.exports = {
             type: 'object',
             properties: {
               mail: { type: 'string' },
-              name: { type: 'string' }
-            }
-          }
-        }
-      },
-      response: {
-        200: {
-          type: 'object',
-          properties: {
-            user: {
-              type: 'object',
-              properties: {
-                mail: { type: 'string' },
-                name: { type: 'string' }
-              }
-            }
-          }
-        },
-        400: {
-          type: 'object',
-          properties: {
-            user: {
-              type: 'object',
-              properties: {
-                mail: { type: 'string' },
-                name: { type: 'string' }
-              }
             },
-            error: {
-              type: 'object',
-              properties: {
-                message: { type: 'string' }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  UPDATE_SCHEMA: {
-    schema: {
-      body: {
-        type: 'object',
-        required: ['id', 'user'],
-        properties: {
-          id: { type: 'string' },
-          user: {
-            type: 'object',
-            properties: {
-              mail: { type: 'string' }
-            }
-          }
+          },
         },
         response: {
-          200: {
+          '2xx': {
             type: 'object',
             properties: {
               id: { type: 'string' },
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' }
-                }
-              }
-            }
+                  mail: { type: 'string' },
+                },
+              },
+            },
           },
-          400: {
-            type: 'object',
-            properties: {
-              id: { type: 'string' },
-              error: {
-                type: 'object',
-                properties: {
-                  message: { type: 'string' }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+          '4xx': ANY_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+        },
+      },
+    },
   },
   USERS_SCHEMA: {
     schema: {
       response: {
-        200: {
+        '2xx': {
           type: 'array',
           items: {
             type: 'object',
             properties: {
               name: { type: 'string' },
-              purpose: { type: 'string' },
-              isEntry: { type: 'boolean' }
-            }
-          }
-        }
-      }
-    }
-  }
+              porpose: { type: 'string' },
+              isEntry: { type: 'boolean' },
+            },
+          },
+        },
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+      },
+    },
+  },
 };
