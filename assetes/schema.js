@@ -30,6 +30,7 @@ module.exports = {
           id: { type: 'string' },
           user: {
             type: 'object',
+            required: ['mail', 'name'],
             properties: {
               mail: { type: 'string' },
               name: { type: 'string' }
@@ -115,6 +116,7 @@ module.exports = {
           id: { type: 'string' },
           user: {
             type: 'object',
+            required: ['mail'],
             properties: {
               mail: { type: 'string' }
             }

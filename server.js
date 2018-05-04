@@ -21,10 +21,11 @@ const getOpt = () => {
     };
   }
 };
+const DEBUG_LEVEL = process.env.NODE_MODE == 'TEST' ? 'fatal' : 'debug';
 
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
-  fastify.register(await require('./routes/users'), { logLevel: 'debug' });
+  fastify.register(await require('./routes/users'), { logLevel: DEBUG_LEVEL });
   fastify.addHook('onRequest', (req, res, next) => {
     fastify.log.info(req);
     next();

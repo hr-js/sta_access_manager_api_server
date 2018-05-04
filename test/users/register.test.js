@@ -1,14 +1,18 @@
-'use stringMatching';
+'use strict';
 
-test('entry return 200', async () => {
+test('correct params return 200', async () => {
   const fastify = await (await require('../../server'))();
+
   fastify.inject(
     {
       method: 'POST',
-      url: '/entry',
+      url: '/register',
       payload: {
         id: '0000002',
-        purpose: 'TEST'
+        user: {
+          mail: 'john.hoe@test.jp',
+          name: 'John Doe',
+        },
       }
     },
     response => {
@@ -16,35 +20,17 @@ test('entry return 200', async () => {
 
       expect(response.statusCode).toBe(200);
       expect(payload.id).toEqual(expect.stringMatching(/^[0-9]+$/));
-      expect(typeof payload.user.isEntry).toEqual('boolean');
+      expect(payload.user.mail).toEqual(expect.stringMatching(/^([a-zA-Z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\\._-]+)+$/));
+      expect(typeof payload.user.name).toBe('string');
     }
   );
+
   fastify.close();
 });
 
-test('update return 200', async () => {
+test('parameter-name brunk is invalid', async () => {
   const fastify = await (await require('../../server'))();
-  fastify.inject(
-    {
-      method: 'POST',
-      url: '/update',
-      payload: {
-        id: '0000002',
-        purpose: 'TEST'
-      }
-    },
-    response => {
-      const payload = JSON.parse(response.payload);
 
-      expect(response.statusCode).toBe(200);
-      expect(payload.id).toEqual(expect.stringMatching(/^[0-9]+$/));
-    }
-  );
-  fastify.close();
-});
-
-test('register parameter-name brunk is invalid', async () => {
-  const fastify = await (await require('../../server'))();
   fastify.inject(
     {
       method: 'POST',
@@ -56,16 +42,15 @@ test('register parameter-name brunk is invalid', async () => {
         },
       }
     },
-    response => {
-
-      expect(response.statusCode).toBe(400);
-    }
+    response => expect(response.statusCode).toBe(400)
   );
+
   fastify.close();
 });
 
-test('register parameter-id typeof number is invalid', async () => {
+test('parameter-id typeof number is invalid', async () => {
   const fastify = await (await require('../../server'))();
+
   fastify.inject(
     {
       method: 'POST',
@@ -74,13 +59,12 @@ test('register parameter-id typeof number is invalid', async () => {
         id: 2,
         user: {
           mail: 'john.hoe@test.jp',
+          name: 'John Doe',
         },
       }
     },
-    response => {
-
-      expect(response.statusCode).toBe(400);
-    }
+    response => expect(response.statusCode).toBe(400)
   );
+
   fastify.close();
 });

@@ -4,15 +4,15 @@ module.exports = {
   register: async () => ({
     id: '0000001',
     user: {
-      mail: 'john.hoe@test.jp',
+      mail: 'john.doe@test.jp',
       name: 'John Doe',
     },
   }),
   entry: async () => ({
     id: '0000001',
     user: {
-      mail: 'john.hoe@test.jp',
-      name: 'John Doe',
+      mail: 'john.doe@test.jp',
+      isEntry: true,
     },
   }),
   update: async () => ({
@@ -22,7 +22,7 @@ module.exports = {
   check: async () => ({
     id: '0000001',
     user: {
-      mail: 'john.hoe@test.jp',
+      mail: 'john.doe@test.jp',
     },
   }),
   fetchUsersByDate: async () => ({
