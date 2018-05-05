@@ -1,5 +1,15 @@
 'use strict';
 
+const id = {
+  type: 'string',
+  pattern: '^[0-9]+$'
+};
+
+const mail = {
+  type: 'string',
+  pattern: '^([a-zA-Z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\\._-]+)+$',
+};
+
 const ANY_ERROR_RESPONSE = {
   type: 'object',
   properties: {
@@ -27,12 +37,12 @@ module.exports = {
         type: 'object',
         required: ['id', 'user'],
         properties: {
-          id: { type: 'string' },
+          id,
           user: {
             type: 'object',
             required: ['mail', 'name'],
             properties: {
-              mail: { type: 'string' },
+              mail,
               name: { type: 'string' }
             }
           }
@@ -41,11 +51,11 @@ module.exports = {
           '2xx': {
             type: 'object',
             properties: {
-              id: { type: 'string' },
+              id,
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' },
+                  mail,
                   name: { type: 'string' }
                 }
               }
@@ -63,7 +73,7 @@ module.exports = {
         type: 'object',
         required: ['id', 'purpose'],
         properties: {
-          id: { type: 'string' },
+          id,
           porpose: { type: 'string' }
         }
       },
@@ -71,7 +81,7 @@ module.exports = {
         '2xx': {
           type: 'object',
           properties: {
-            id: { type: 'string' },
+            id,
             user: {
               type: 'object',
               properties: {
@@ -92,14 +102,14 @@ module.exports = {
         type: 'object',
         required: ['id'],
         properties: {
-          id: { type: 'string' }
+          id,
         }
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
+            id,
           }
         },
         '4xx': ANY_ERROR_RESPONSE,
@@ -113,12 +123,12 @@ module.exports = {
         type: 'object',
         required: ['id', 'user'],
         properties: {
-          id: { type: 'string' },
+          id,
           user: {
             type: 'object',
             required: ['mail'],
             properties: {
-              mail: { type: 'string' }
+              mail,
             }
           }
         },
@@ -126,11 +136,11 @@ module.exports = {
           '2xx': {
             type: 'object',
             properties: {
-              id: { type: 'string' },
+              id,
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' }
+                  mail,
                 }
               }
             }
