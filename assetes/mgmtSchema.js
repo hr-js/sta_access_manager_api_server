@@ -1,15 +1,10 @@
 'use strict';
 
-const COMMON_500_ERROR = {
-  type: 'object',
-  properties: {
-    error: {
-      message: {
-        type: 'string',
-      },
-    },
-  },
-};
+const {
+  ANY_ERROR_RESPONSE,
+  VALIDATION_ERROR_RESPONSE,
+  INTERNAL_SERVER_ERROR_RESPONCE,
+} = require('./util/errorHelper.js');
 
 module.exports = {
   ACCESS_RCD_SCHEMA: {
@@ -44,7 +39,7 @@ module.exports = {
             },
           },
         },
-        '500': COMMON_500_ERROR,
+        '500': INTERNAL_SERVER_ERROR_RESPONCE,
       },
     },
   },
@@ -70,7 +65,9 @@ module.exports = {
             },
           },
         },
-        '500': COMMON_500_ERROR,
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+        '500': INTERNAL_SERVER_ERROR_RESPONCE,
       },
     },
   },
@@ -95,7 +92,9 @@ module.exports = {
             },
           },
         },
-        '500': COMMON_500_ERROR,
+        '4xx': ANY_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+        '500': INTERNAL_SERVER_ERROR_RESPONCE,
       },
     },
   },
