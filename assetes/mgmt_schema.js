@@ -14,6 +14,16 @@ const COMMON_500_ERROR = {
 module.exports = {
   ACCESS_RCD_SCHEMA: {
     schema: {
+      querystring: {
+        from: {
+          type: 'string',
+          pattern: '^[0-9]{8}$',
+        },
+        to: {
+          type: 'string',
+          pattern: '^[0-9]{8}$',
+        },
+      },
       responce: {
         '200': {
           type: 'array',
