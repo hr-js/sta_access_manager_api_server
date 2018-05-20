@@ -7,9 +7,7 @@ const {
   USERS_SCHEMA,
 } = require('../assetes/schema');
 
-const provider = process.env.NODE_MODE === 'test'
-  ? require('../test/mock/usersMockProvider')
-  : require('./provider')('localhost', 9200);
+const provider = require('./provider')('localhost', 9200);
 
 module.exports = async function(fastify, opt, next) {
   const handler = (response, reply) => {
