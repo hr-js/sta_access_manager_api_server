@@ -13,18 +13,18 @@ const getOpt = () => {
         ),
         passphrase: 'xxxxx',
       },
-      logger: true,
+      logger: false,
     };
   default:
     return {
-      logger: true,
+      logger: false,
     };
   }
 };
 
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
-  fastify.register(await require('./routes/users'), { logLevel: 'error' });
+  fastify.register(await require('../routes/users'), {});
   fastify.addHook('onRequest', (req, res, next) => {
     fastify.log.info(req);
     next();
