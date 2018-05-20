@@ -9,8 +9,7 @@ const Query = require('./query');
 class ElasticsearchProvider {
   constructor(host, port) {
     this.client = new elasticsearch.Client({
-      //host: `${host}:${port}`,
-      host: 'http://localhost:9200',
+      host: `${host}:${port}`,
       log: 'trace'
     });
     this.PURPOSE = ['WORK', 'STUDY', 'MEET_UP', 'OTHER'];

@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const logger = process.env.NODE_ENV !== 'TEST';
 const getOpt = () => {
   switch (process.env.NODE_HTTP) {
   case 'http2':
@@ -13,11 +14,11 @@ const getOpt = () => {
         ),
         passphrase: 'xxxxx',
       },
-      logger: true,
+      logger
     };
   default:
     return {
-      logger: true,
+      logger
     };
   }
 };

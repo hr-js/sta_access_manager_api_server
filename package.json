@@ -1,5 +1,5 @@
 {
-  "name": "sam_api_app",
+  "name": "sam_api_server",
   "version": "1.0.0",
   "main": "app.js",
   "repository": "https://github.com/hr-js/sam_api_app.git",
@@ -8,11 +8,12 @@
     "prod:http2": "NODE_HTTP=http2 node app.js",
     "dev:http": "NODE_ENV=DEVELOP node app.js",
     "dev:http2": "NODE_HTTP=http2 NODE_ENV=DEVELOP node app.js",
-    "test:http": "NODE_MODE=test jest",
-    "test:http2": "NODE_MODE=test NODE_HTTP=http2 jest"
+    "test:http": "NODE_ENV=TEST jest",
+    "test:http2": "NODE_ENV=TEST NODE_HTTP=http2 jest",
+    "coverage:http": "NODE_ENV=TEST jest --coverage"
   },
   "jest": {
-    "verbose": false
+    "verbose": true
   },
   "author": "t-kurihara",
   "license": "MIT",
