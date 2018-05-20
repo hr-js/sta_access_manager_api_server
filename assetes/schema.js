@@ -29,7 +29,6 @@ const VALIDATION_ERROR_RESPONSE = {
     statusCode: { type: 'number' }
   }
 };
-
 module.exports = {
   REGISTOR_SCHEMA: {
     schema: {
