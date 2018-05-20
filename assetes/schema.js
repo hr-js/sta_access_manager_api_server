@@ -2,12 +2,11 @@
 
 const id = {
   type: 'string',
-  pattern: '^[0-9]+$'
 };
 
 const mail = {
   type: 'string',
-  pattern: '^([a-zA-Z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\\._-]+)+$',
+  pattern: '^([a-za-z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9\\._-]+)*$',
 };
 
 const ANY_ERROR_RESPONSE = {
@@ -30,6 +29,7 @@ const VALIDATION_ERROR_RESPONSE = {
     statusCode: { type: 'number' }
   }
 };
+
 module.exports = {
   REGISTOR_SCHEMA: {
     schema: {
