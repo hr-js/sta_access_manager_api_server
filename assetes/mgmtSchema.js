@@ -1,9 +1,9 @@
 'use strict';
 
 const {
-  ANY_ERROR_RESPONSE,
+  CLIENT_ERROR_RESPONSE,
   VALIDATION_ERROR_RESPONSE,
-  INTERNAL_SERVER_ERROR_RESPONCE,
+  INTERNAL_SERVER_ERROR_RESPONSE,
 } = require('./util/errorHelper.js');
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
           pattern: '^[0-9]{8}$',
         },
       },
-      responce: {
+      response: {
         '200': {
           type: 'array',
           items: {
@@ -39,13 +39,13 @@ module.exports = {
             },
           },
         },
-        '500': INTERNAL_SERVER_ERROR_RESPONCE,
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },
   },
   LASTACCESS_RCD_SCHEMA: {
     schema: {
-      responce: {
+      response: {
         '200': {
           type: 'array',
           items: {
@@ -65,15 +65,15 @@ module.exports = {
             },
           },
         },
-        '4xx': ANY_ERROR_RESPONSE,
+        '4xx': CLIENT_ERROR_RESPONSE,
         '400': VALIDATION_ERROR_RESPONSE,
-        '500': INTERNAL_SERVER_ERROR_RESPONCE,
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },
   },
   AGGREGATE_SCHEMA: {
     schema: {
-      responce: {
+      response: {
         '200': {
           type: 'array',
           items: {
@@ -92,9 +92,9 @@ module.exports = {
             },
           },
         },
-        '4xx': ANY_ERROR_RESPONSE,
+        '4xx': CLIENT_ERROR_RESPONSE,
         '400': VALIDATION_ERROR_RESPONSE,
-        '500': INTERNAL_SERVER_ERROR_RESPONCE,
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },
   },

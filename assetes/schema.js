@@ -1,9 +1,9 @@
 'use strict';
 
 const {
-  ANY_ERROR_RESPONSE,
+  CLIENT_ERROR_RESPONSE,
   VALIDATION_ERROR_RESPONSE,
-  INTERNAL_SERVER_ERROR_RESPONCE,
+  INTERNAL_SERVER_ERROR_RESPONSE,
 } = require('./util/errorHelper.js');
 
 module.exports = {
@@ -18,9 +18,9 @@ module.exports = {
             type: 'object',
             properties: {
               mail: { type: 'string' },
-              name: { type: 'string' }
-            }
-          }
+              name: { type: 'string' },
+            },
+          },
         },
         response: {
           '2xx': {
@@ -31,17 +31,17 @@ module.exports = {
                 type: 'object',
                 properties: {
                   mail: { type: 'string' },
-                  name: { type: 'string' }
-                }
-              }
-            }
+                  name: { type: 'string' },
+                },
+              },
+            },
           },
-          '4xx': ANY_ERROR_RESPONSE,
+          '4xx': CLIENT_ERROR_RESPONSE,
           '400': VALIDATION_ERROR_RESPONSE,
-          '500': INTERNAL_SERVER_ERROR_RESPONCE,
-        }
-      }
-    }
+          '500': INTERNAL_SERVER_ERROR_RESPONSE,
+        },
+      },
+    },
   },
   ENTRY_SCHEMA: {
     schema: {
@@ -50,8 +50,8 @@ module.exports = {
         required: ['id', 'purpose'],
         properties: {
           id: { type: 'string' },
-          porpose: { type: 'string' }
-        }
+          porpose: { type: 'string' },
+        },
       },
       response: {
         '2xx': {
@@ -62,16 +62,16 @@ module.exports = {
               type: 'object',
               properties: {
                 name: { type: 'string' },
-                isEntry: { type: 'boolean' }
-              }
-            }
-          }
+                isEntry: { type: 'boolean' },
+              },
+            },
+          },
         },
-        '4xx': ANY_ERROR_RESPONSE,
+        '4xx': CLIENT_ERROR_RESPONSE,
         '400': VALIDATION_ERROR_RESPONSE,
-        '500': NTERNAL_SERVER_ERROR_RESPONCE,
-      }
-    }
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
+      },
+    },
   },
   UPDATE_SCHEMA: {
     schema: {
@@ -79,21 +79,21 @@ module.exports = {
         type: 'object',
         required: ['id'],
         properties: {
-          id: { type: 'string' }
-        }
+          id: { type: 'string' },
+        },
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            id: { type: 'string' }
-          }
+            id: { type: 'string' },
+          },
         },
-        '4xx': ANY_ERROR_RESPONSE,
+        '4xx': CLIENT_ERROR_RESPONSE,
         '400': VALIDATION_ERROR_RESPONSE,
-        '500': NTERNAL_SERVER_ERROR_RESPONCE,
-      }
-    }
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
+      },
+    },
   },
   OUT_SCHEMA: {
     schema: {
@@ -105,9 +105,9 @@ module.exports = {
           user: {
             type: 'object',
             properties: {
-              mail: { type: 'string' }
-            }
-          }
+              mail: { type: 'string' },
+            },
+          },
         },
         response: {
           '2xx': {
@@ -117,17 +117,17 @@ module.exports = {
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' }
-                }
-              }
-            }
+                  mail: { type: 'string' },
+                },
+              },
+            },
           },
-          '4xx': ANY_ERROR_RESPONSE,
+          '4xx': CLIENT_ERROR_RESPONSE,
           '400': VALIDATION_ERROR_RESPONSE,
-          '500': NTERNAL_SERVER_ERROR_RESPONCE,
-        }
-      }
-    }
+          '500': INTERNAL_SERVER_ERROR_RESPONSE,
+        },
+      },
+    },
   },
   USERS_SCHEMA: {
     schema: {
@@ -139,14 +139,14 @@ module.exports = {
             properties: {
               name: { type: 'string' },
               porpose: { type: 'string' },
-              isEntry: { type: 'boolean' }
-            }
-          }
+              isEntry: { type: 'boolean' },
+            },
+          },
         },
-        '4xx': ANY_ERROR_RESPONSE,
+        '4xx': CLIENT_ERROR_RESPONSE,
         '400': VALIDATION_ERROR_RESPONSE,
-        '500': NTERNAL_SERVER_ERROR_RESPONCE,
-      }
-    }
-  }
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
+      },
+    },
+  },
 };

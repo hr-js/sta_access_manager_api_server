@@ -1,14 +1,12 @@
 'use strict';
 
-const ANY_ERROR_RESPONSE = {
+const CLIENT_ERROR_RESPONSE = {
   type: 'object',
   properties: {
     error: {
       type: 'object',
       properties: {
-        message: {
-          type: 'string',
-        },
+        message: { type: 'string' },
       },
     },
   },
@@ -17,24 +15,19 @@ const ANY_ERROR_RESPONSE = {
 const VALIDATION_ERROR_RESPONSE = {
   type: 'object',
   properties: {
-    error: {
-      type: 'string',
-    },
-    message: {
-      type: 'string',
-    },
-    statusCode: {
-      type: 'number',
-    },
+    error: { type: 'string' },
+    message: { type: 'string' },
+    statusCode: { type: 'number' },
   },
 };
 
-const INTERNAL_SERVER_ERROR_RESPONCE = {
+const INTERNAL_SERVER_ERROR_RESPONSE = {
   type: 'object',
   properties: {
     error: {
-      message: {
-        type: 'string',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
       },
     },
   },
@@ -42,6 +35,6 @@ const INTERNAL_SERVER_ERROR_RESPONCE = {
 
 module.exports = {
   VALIDATION_ERROR_RESPONSE,
-  ANY_ERROR_RESPONSE,
-  INTERNAL_SERVER_ERROR_RESPONCE,
+  CLIENT_ERROR_RESPONSE,
+  INTERNAL_SERVER_ERROR_RESPONSE,
 };
