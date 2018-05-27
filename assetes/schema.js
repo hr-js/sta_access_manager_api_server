@@ -1,5 +1,14 @@
 'use strict';
 
+const id = {
+  type: 'string',
+};
+
+const mail = {
+  type: 'string',
+  pattern: '^([a-za-z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9\\._-]+)*$',
+};
+
 const {
   CLIENT_ERROR_RESPONSE,
   VALIDATION_ERROR_RESPONSE,
@@ -13,28 +22,29 @@ module.exports = {
         type: 'object',
         required: ['id', 'user'],
         properties: {
-          id: { type: 'string' },
+          id,
           user: {
             type: 'object',
+            required: ['mail', 'name'],
             properties: {
-              mail: { type: 'string' },
-              name: { type: 'string' },
-            },
-          },
+              mail,
+              name: { type: 'string' }
+            }
+          }
         },
         response: {
           '2xx': {
             type: 'object',
             properties: {
-              id: { type: 'string' },
+              id,
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' },
-                  name: { type: 'string' },
-                },
-              },
-            },
+                  mail,
+                  name: { type: 'string' }
+                }
+              }
+            }
           },
           '4xx': CLIENT_ERROR_RESPONSE,
           '400': VALIDATION_ERROR_RESPONSE,
@@ -49,15 +59,15 @@ module.exports = {
         type: 'object',
         required: ['id', 'purpose'],
         properties: {
-          id: { type: 'string' },
-          porpose: { type: 'string' },
-        },
+          id,
+          porpose: { type: 'string' }
+        }
       },
       response: {
         '2xx': {
           type: 'object',
           properties: {
-            id: { type: 'string' },
+            id,
             user: {
               type: 'object',
               properties: {
@@ -79,15 +89,15 @@ module.exports = {
         type: 'object',
         required: ['id'],
         properties: {
-          id: { type: 'string' },
-        },
+          id,
+        }
       },
       response: {
         200: {
           type: 'object',
           properties: {
-            id: { type: 'string' },
-          },
+            id,
+          }
         },
         '4xx': CLIENT_ERROR_RESPONSE,
         '400': VALIDATION_ERROR_RESPONSE,
@@ -101,26 +111,27 @@ module.exports = {
         type: 'object',
         required: ['id', 'user'],
         properties: {
-          id: { type: 'string' },
+          id,
           user: {
             type: 'object',
+            required: ['mail'],
             properties: {
-              mail: { type: 'string' },
-            },
-          },
+              mail,
+            }
+          }
         },
         response: {
           '2xx': {
             type: 'object',
             properties: {
-              id: { type: 'string' },
+              id,
               user: {
                 type: 'object',
                 properties: {
-                  mail: { type: 'string' },
-                },
-              },
-            },
+                  mail,
+                }
+              }
+            }
           },
           '4xx': CLIENT_ERROR_RESPONSE,
           '400': VALIDATION_ERROR_RESPONSE,
@@ -150,3 +161,4 @@ module.exports = {
     },
   },
 };
+

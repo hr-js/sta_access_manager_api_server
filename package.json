@@ -1,14 +1,16 @@
 {
   "name": "sam_api_server",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/hr-js/sam_api_server.git",
+  "main": "app.js",
+  "repository": "https://github.com/hr-js/sam_api_app.git",
   "scripts": {
-    "http": "node server.js",
-    "http2": "NODE_HTTP=http2 node server.js",
-    "http-test": "NODE_ENV=test node server.js",
-    "http2-test": "NODE_HTTP=http2 NODE_ENV=test node server.js",
-    "test": "jest"
+    "prod:http": "node app.js",
+    "prod:http2": "NODE_HTTP=http2 node app.js",
+    "dev:http": "NODE_ENV=DEVELOP node app.js",
+    "dev:http2": "NODE_HTTP=http2 NODE_ENV=DEVELOP node app.js",
+    "test:http": "NODE_ENV=TEST jest",
+    "test:http2": "NODE_ENV=TEST NODE_HTTP=http2 jest",
+    "coverage:http": "NODE_ENV=TEST jest --coverage"
   },
   "jest": {
     "verbose": true
@@ -22,7 +24,8 @@
   },
   "devDependencies": {
     "editorconfig": "^0.15.0",
-    "eslint": "^4.12.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-jest": "^21.15.0",
     "jest": "^22.2.2",
     "minimist": "^1.2.0",
     "node-fetch": "^2.0.0"
