@@ -25,6 +25,7 @@ const getOpt = () => {
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
   fastify.register(await require('./routes/users'), { logLevel: 'error' });
+  fastify.register(require('./routes/management'), { logLevel: 'error' });
   fastify.addHook('onRequest', (req, res, next) => {
     fastify.log.info(req);
     next();
