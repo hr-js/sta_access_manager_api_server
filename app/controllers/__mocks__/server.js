@@ -24,7 +24,7 @@ const getOpt = () => {
 
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
-  fastify.register(await require('../routes/users'), {});
+  fastify.register(await require('../users'), {});
   fastify.addHook('onRequest', (req, res, next) => {
     fastify.log.info(req);
     next();

@@ -1,4 +1,4 @@
-const serverBuilder = require('./server');
+const serverBuilder = require('./controllers/server');
 
 (async() => {
   const fastify = await serverBuilder();

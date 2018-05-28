@@ -2,8 +2,8 @@
 const requestHelper = require('../helper/requestHelper');
 const MAIL_REGEX = /^([a-za-z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9\\._-]+)*$/;
 
-jest.mock('../../routes/provider');
-jest.mock('../../server');
+jest.mock('../../../app/repositories/provider');
+jest.mock('../../../app/controllers/server');
 
 test('correct params return 200', async () => {
   const payload = {

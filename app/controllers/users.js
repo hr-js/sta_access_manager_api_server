@@ -5,9 +5,9 @@ const {
   ENTRY_SCHEMA,
   OUT_SCHEMA,
   USERS_SCHEMA,
-} = require('../assetes/schema');
+} = require('../commons/schemas/usersSchema');
 
-const provider = require('./provider')('localhost', 9200);
+const provider = require('../repositories/provider')('localhost', 9200);
 
 module.exports = async function(fastify, opt, next) {
   const handler = (response, reply) => {
