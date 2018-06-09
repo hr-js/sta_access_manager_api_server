@@ -5,7 +5,7 @@ const {
   ENTRY_SCHEMA,
   OUT_SCHEMA,
   USERS_SCHEMA,
-} = require('./schema/usersSchema');
+} = require('./schema/users');
 
 const provider = require('../repository/provider')('localhost', 9200);
 
