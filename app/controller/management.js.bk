@@ -3,7 +3,7 @@ module.exports = async function(fastify, opts, next) {
     ACCESS_RCD_SCHEMA,
     LASTACCESS_RCD_SCHEMA,
     AGGREGATE_SCHEMA,
-  } = require('../commons/schemas/managementSchema');
+  } = require('./schema/managementSchema');
 
   const handler = (response, reply) => {
     reply.send(response);

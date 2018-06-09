@@ -1,6 +1,6 @@
 module.exports = class {
   static async post(url, payload, callback) {
-    const fastify = await (await require('../../../app/controllers/server'))();
+    const fastify = await (await require('../../../app/controller/server'))();
 
     fastify.inject(
       {
