@@ -4,7 +4,7 @@ const {
   CLIENT_ERROR_RESPONSE,
   VALIDATION_ERROR_RESPONSE,
   INTERNAL_SERVER_ERROR_RESPONSE,
-} = require('./util/errorHelper.js');
+} = require('./common/error');
 
 module.exports = {
   ACCESS_RCD_SCHEMA: {

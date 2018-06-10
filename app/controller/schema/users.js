@@ -13,7 +13,7 @@ const {
   CLIENT_ERROR_RESPONSE,
   VALIDATION_ERROR_RESPONSE,
   INTERNAL_SERVER_ERROR_RESPONSE,
-} = require('./util/errorHelper.js');
+} = require('./common/error.js');
 
 module.exports = {
   REGISTOR_SCHEMA: {
