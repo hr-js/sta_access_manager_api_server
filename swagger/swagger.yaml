@@ -1,0 +1,296 @@
+swagger: '2.0'
+info:
+  title: sta_access_manager
+  description: sta_access_manager => 入館画面用
+  version: 1.0.0
+host: api.uber.com
+schemes:
+  - https
+basePath: /
+produces:
+  - application/json
+paths:
+  /registor:
+    post:
+      summary: ユーザー/ICカード登録
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - id
+              - user
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                required:
+                  - mail
+                  - name
+                properties:
+                  mail:
+                    type: string
+                  name:
+                    type: string
+      tags:
+        - User
+      responses:
+        200:
+          description: 登録成功
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  mail:
+                    type: string
+                  name:
+                    type: string
+        400:
+          description: 登録済
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  mail:
+                    type: string
+                  name:
+                    type: string
+        500:
+          description: サーバー側の処理に問題が発生
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /update:
+    put:
+      summary: ユーザー情報更新
+      parameters:
+        - in: body
+          name: user
+          description: ユーザー情報更新
+          schema:
+            type: object
+            required:
+              - id
+              - user
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                required:
+                  - mail
+                properties:
+                  mail:
+                    type: string
+      tags:
+        - User
+      responses:
+        200:
+          description: 更新成功
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  mail:
+                    type: string
+        400:
+          description: ユーザー未登録
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  mail:
+                    type: string
+                  name:
+                    type: string
+        500:
+          description: サーバー側の処理に問題が発生
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /entry:
+    post:
+      summary: "入室処理"
+      parameters:
+        - in: body
+          name: user
+          description: 入室処理
+          schema:
+            type: object
+            required:
+              - id
+              - purpose
+            properties:
+              id:
+                type: string
+              purpose:
+                type: string
+      tags:
+        - User
+      responses:
+        201:
+          description: 入室処理成功
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  mail:
+                    type: string
+                  isEntry:
+                    type: boolean
+        400:
+          description: 入室済
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  isEntry:
+                    type: boolean
+                  purpose:
+                    type: string
+        500:
+          description: サーバー側の処理に問題が発生
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /exit:
+    post:
+      summary: 入室処理
+      parameters:
+        - in: body
+          name: user
+          description: 入室処理
+          schema:
+            type: object
+            required:
+              - id
+              - purpose
+            properties:
+              id:
+                type: string
+              purpose:
+                type: string
+      tags:
+        - User
+      responses:
+        201:
+          description: 入室処理成功
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  mail:
+                    type: string
+                  isEntry:
+                    type: boolean
+        400:
+          description: 入室済
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  isEntry:
+                    type: boolean
+                  purpose:
+                    type: string
+        500:
+          description: サーバー側の処理に問題が発生
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /user/{id}/status:
+    get:
+      summary: 入室処理
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: 指定されたidのユーザーが登録済か返す
+      tags:
+        - User
+      responses:
+        200:
+          description: 登録済み
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              user:
+                type: object
+                properties:
+                  isEntry:
+                    type: boolean
+        400:
+          description: 未登録
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        500:
+          description: サーバー側の処理に問題が発生
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
