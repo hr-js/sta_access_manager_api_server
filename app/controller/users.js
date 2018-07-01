@@ -35,15 +35,14 @@ module.exports = async function(fastify, opt, next) {
     provider.check(req.body).then(response => handler(response, reply));
   });
 
-  fastify.post('/users', USERS_SCHEMA, async (req, reply) => {
-    provider.check(req.body).then(response => handler(response, reply));
-  });
-
+  // /users/recent,/usersとやりたいことが被っている
   fastify.get('/users/:date', USERS_SCHEMA, async (req, reply) => {
-    provider
-      .fetchUsersByDate(req.params.date)
-      .then(response => handler(response, reply));
+    const date = req.params.date;
+    if (date) {
+      provider
+        .fetchUsersByDate(req.params.date)
+        .then(response => handler(response, reply));
+    }
   });
-
   next();
 };
