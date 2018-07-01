@@ -79,7 +79,10 @@ module.exports = {
           items: {
             type: 'object',
             properties: {
-              date: 'date',
+              date: {
+                type: 'string',
+                pattern: '^[0-9]{8}$',
+              },
               purpose: {
                 type: 'object',
                 properties: {

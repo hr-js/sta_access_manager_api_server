@@ -24,11 +24,10 @@ const getOpt = () => {
 
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
-  
+
   fastify.register(await require('./users'), { logLevel: 'error' });
 
-  // FIXME schemaの定義が正しくないので修正が必要 -> 終わったらコメント外す
-  //fastify.register(require('./management'), { logLevel: 'error' });
+  fastify.register(await require('./management'), { logLevel: 'error' });
 
   fastify.addHook('onRequest', (req, res, next) => {
     fastify.log.info(req);
