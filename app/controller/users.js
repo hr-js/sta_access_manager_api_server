@@ -12,7 +12,7 @@ const provider = require('../repository');
 module.exports = async function(fastify, opt, next) {
   const handler = (response, reply) => {
     if (response.code === 1) {
-      reply.code(400).send(response);
+      reply.code(400).send(response.error);
     }
     reply.send(response);
   };
@@ -29,18 +29,14 @@ module.exports = async function(fastify, opt, next) {
     provider.update(req.body).then(response => handler(response, reply));
   });
 
-  fastify.post('/out', OUT_SCHEMA, async (req, reply) => {
-    provider.check(req.body).then(response => handler(response, reply));
-  });
-
-  fastify.post('/users', USERS_SCHEMA, async (req, reply) => {
-    provider.check(req.body).then(response => handler(response, reply));
+  fastify.post('/exit', OUT_SCHEMA, async (req, reply) => {
+    provider.exit(req.body).then(response => handler(response, reply));
   });
 
   fastify.get('/users/:date', USERS_SCHEMA, async (req, reply) => {
-    provider
-      .fetchUsersByDate(req.params.date)
-      .then(response => handler(response, reply));
+    provider.findByDate(req.params.date).then(response => {
+      reply.send(response);
+    });
   });
 
   next();
