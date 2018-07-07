@@ -2,6 +2,7 @@ version: '3'
 services:
   sam:
     build: .
+    container_name: sam
     ports:
       - "3000:3000"
     networks: 
@@ -18,7 +19,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - esdata1:/usr/share/elasticsearch/data
+      - ./data
     ports:
       - 9200:9200
     networks:
