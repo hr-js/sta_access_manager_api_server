@@ -7,7 +7,7 @@ const {
   USERS_SCHEMA,
 } = require('./schema/users');
 
-const provider = require('../repository/provider')('localhost', 9200);
+const provider = require('../repository');
 
 module.exports = async function(fastify, opt, next) {
   const handler = (response, reply) => {
@@ -16,8 +16,6 @@ module.exports = async function(fastify, opt, next) {
     }
     reply.send(response);
   };
-
-  provider.prepare();
 
   fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
     provider.register(req.body).then(response => handler(response, reply));
