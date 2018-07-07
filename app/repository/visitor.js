@@ -98,6 +98,9 @@ const aggregateByPurposeAndDate = async (order, to) => {
     order = 'desc';
   }
   let results = await aggregateVistorsByPurposeAndDate(order, to);
+  if(!results.aggregations.date.buckets.length){
+    return [];
+  }
   return results.aggregations.date.buckets.map(bucket => {
     let purpose = {};
     bucket.purpose.buckets.map(bucket => {
