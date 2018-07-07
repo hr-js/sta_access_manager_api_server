@@ -60,7 +60,7 @@ module.exports = {
         required: ['id', 'purpose'],
         properties: {
           id,
-          porpose: { type: 'string' }
+          purpose: { type: 'string' }
         }
       },
       response: {
