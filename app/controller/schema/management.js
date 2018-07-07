@@ -79,7 +79,7 @@ module.exports = {
           items: {
             type: 'object',
             properties: {
-              date: 'date',
+              date: { type: 'string' },
               purpose: {
                 type: 'object',
                 properties: {
@@ -87,6 +87,7 @@ module.exports = {
                   study: { type: 'number' },
                   meetUp: { type: 'number' },
                   circle: { type: 'number' },
+                  other: {type: 'number'},
                 },
               },
             },
