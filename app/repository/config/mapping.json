@@ -3,9 +3,9 @@
     "mappings": {
       "user": {
         "properties": {
-          "user.id": { "type": "keyword" },
-          "user.name": { "type": "text" },
-          "user.mail": { "type": "keyword" }
+          "id": { "type": "keyword" },
+          "name": { "type": "text" },
+          "mail": { "type": "keyword" }
         }
       }
     }
