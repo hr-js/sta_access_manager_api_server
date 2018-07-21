@@ -60,7 +60,7 @@ module.exports = {
         required: ['id', 'purpose'],
         properties: {
           id,
-          porpose: { type: 'string' }
+          purpose: { type: 'string' }
         }
       },
       response: {
@@ -87,9 +87,15 @@ module.exports = {
     schema: {
       body: {
         type: 'object',
-        required: ['id'],
+        required: ['id','user'],
         properties: {
           id,
+          user: {
+            type: 'object',
+            properties: {
+              mail,
+            }
+          }
         }
       },
       response: {
@@ -109,16 +115,9 @@ module.exports = {
     schema: {
       body: {
         type: 'object',
-        required: ['id', 'user'],
+        required: ['id'],
         properties: {
           id,
-          user: {
-            type: 'object',
-            required: ['mail'],
-            properties: {
-              mail,
-            }
-          }
         },
         response: {
           '2xx': {
@@ -128,7 +127,8 @@ module.exports = {
               user: {
                 type: 'object',
                 properties: {
-                  mail,
+                  name: { type: 'string' },
+                  isEntry: {type: 'boolean'}
                 }
               }
             }
