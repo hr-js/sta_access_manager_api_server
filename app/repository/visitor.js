@@ -1,5 +1,5 @@
 'use strict';
-const PURPOSE = require('./constraint/purpose');
+const PURPOSE = require('../common/constraint/purpose');
 const ORDER = require('./constraint/order');
 const locale = require('moment')().local('ja');
 const {
