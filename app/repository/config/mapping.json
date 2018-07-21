@@ -1,0 +1,67 @@
+{
+  "user": {
+    "mappings": {
+      "user": {
+        "properties": {
+          "id": { "type": "keyword" },
+          "name": { "type": "text" },
+          "mail": { "type": "keyword" }
+        }
+      }
+    }
+  },
+  "template": {
+    "index_patterns":"workspace*",
+    "mappings": {
+      "stack":{
+        "dynamic_templates": [
+          {
+            "date":{
+              "path_match": "date",
+              "mapping":{
+                "type":"date",
+                "format": "basic_date",
+                "locale":"ja"
+              }
+            }
+          },
+          {
+            "perfect_match":{
+              "path_match":["user.id","user.purpose"],
+              "mapping":{
+                "type":"keyword",
+                "doc_values": false
+              }
+            }
+          },
+          {
+            "partial_match":{
+              "path_match":"user.name",
+              "mapping":{
+               "type":"text",
+               "analyzer":"kuromoji"
+              }
+            }
+          },
+          {
+            "boolean_match":{
+              "path_match":"user.isEntry",
+              "mapping":{
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "timestamp":{
+              "path_match":"timestamp.*",
+              "mapping":{
+                "type":"date",
+                "format":"epoch_millis"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

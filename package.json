@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "elasticsearch": "^14.1.0",
-    "fastify": "^0.35.7",
+    "fastify": "^1.7.0",
     "moment": "^2.20.1"
   },
   "devDependencies": {
