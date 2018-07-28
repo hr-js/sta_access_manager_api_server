@@ -7,7 +7,16 @@ const {
   USERS_SCHEMA,
 } = require('./schema/users');
 
-const provider = require('../repository');
+const {
+  register,
+  update
+} = require('../repository/user');
+
+const {
+  exit,
+  entry,
+  findByDate,
+} = require('../repository/visitor');
 
 module.exports = async function(fastify, opt, next) {
   const handler = (response, reply) => {
@@ -18,23 +27,23 @@ module.exports = async function(fastify, opt, next) {
   };
 
   fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
-    provider.register(req.body).then(response => handler(response, reply));
+    register(req.body).then(response => handler(response, reply));
   });
 
   fastify.post('/entry', ENTRY_SCHEMA, async (req, reply) => {
-    provider.entry(req.body).then(response => handler(response, reply));
+    entry(req.body).then(response => handler(response, reply));
   });
 
   fastify.post('/update', UPDATE_SCHEMA, async (req, reply) => {
-    provider.update(req.body).then(response => handler(response, reply));
+    update(req.body).then(response => handler(response, reply));
   });
 
   fastify.post('/exit', OUT_SCHEMA, async (req, reply) => {
-    provider.exit(req.body).then(response => handler(response, reply));
+    exit(req.body).then(response => handler(response, reply));
   });
 
   fastify.get('/users/:date', USERS_SCHEMA, async (req, reply) => {
-    provider.findByDate(req.params.date).then(response => {
+    findByDate(req.params.date).then(response => {
       reply.send(response);
     });
   });

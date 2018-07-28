@@ -8,7 +8,9 @@ module.exports = class {
         url,
         payload
       },
-      response => {
+      (error, response) => {
+
+        if (error) throw new Error(`リクエスト内でのエラー${error}`);
         callback(response);
       }
     );
