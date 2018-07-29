@@ -2,7 +2,7 @@
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
   host: 'http://elasticsearch:9200',
-  log: 'trace'
+  log: 'error'
 });
 const moment = require('moment');
 const today = moment()

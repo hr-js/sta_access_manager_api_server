@@ -69,13 +69,7 @@ paths:
         500:
           description: サーバー側の処理に問題が発生
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
+            $ref: '#/definitions/ServerError'
   /update:
     put:
       summary: ユーザー情報更新
@@ -130,13 +124,7 @@ paths:
         500:
           description: サーバー側の処理に問題が発生
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
+            $ref: '#/definitions/ServerError'
   /entry:
     post:
       summary: "入室処理"
@@ -188,13 +176,7 @@ paths:
         500:
           description: サーバー側の処理に問題が発生
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
+            $ref: '#/definitions/ServerError'
   /exit:
     post:
       summary: 入室処理
@@ -246,13 +228,7 @@ paths:
         500:
           description: サーバー側の処理に問題が発生
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
+            $ref: '#/definitions/ServerError'
   /user/{id}/status:
     get:
       summary: 入室処理
@@ -287,10 +263,12 @@ paths:
         500:
           description: サーバー側の処理に問題が発生
           schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
+            $ref: '#/definitions/ServerError'
+definitions:
+  ServerError:
+    properties:
+      error:
+        type: object
+        properties:
+          message:
+            type: string
