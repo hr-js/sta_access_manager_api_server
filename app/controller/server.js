@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const init = require('../repository/init');
 const getOpt = () => {
   switch (process.env.NODE_HTTP) {
   case 'http2':
@@ -24,7 +25,7 @@ const getOpt = () => {
 
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
-  
+
   fastify.register(await require('./users'), { logLevel: 'error' });
 
   fastify.register(require('./management'), { logLevel: 'error' });
@@ -33,6 +34,8 @@ const buildServer = async () => {
     // fastify.log.info(req);
     next();
   });
+
+  await init();
 
   return fastify;
 };
