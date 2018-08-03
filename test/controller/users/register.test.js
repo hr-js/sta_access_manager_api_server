@@ -1,8 +1,7 @@
 'use strict';
 const requestHelper = require('../helper/requestHelper');
 
-jest.mock('../../../app/repository/provider');
-jest.mock('../../../app/controller/server');
+jest.mock('../../../app/repository/user');
 
 /**
 * /usrs/register に対してのPOST送信の正常系.
@@ -22,7 +21,6 @@ test('requestBodyに必要なデータが揃っていて正常にrequestとrespo
     const payload = JSON.parse(response.payload);
 
     expect(response.statusCode).toBe(200);
-    expect(payload.id).toEqual(expect.stringMatching(/^[0-9]+$/));
     expect(typeof payload.user.name).toBe('string');
   });
 });
