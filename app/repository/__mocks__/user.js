@@ -13,7 +13,9 @@ const register = async () => {
 const update = async () => {
   return {
     id: '0000001',
-    purpose: 'STUDY',
+    user: {
+      mail: 'john.doe@test.jp',
+    }
   };
 };
 

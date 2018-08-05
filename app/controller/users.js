@@ -32,12 +32,12 @@ module.exports = async function(fastify, opt, next) {
 
   fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
     register(req.body)
-      .then(response => response(response, reply));
+      .then(response => res(response, reply));
   });
 
   fastify.post('/entry', ENTRY_SCHEMA, async (req, reply) => {
     if(!PURPOSE.includes(req.body.purpose)) {
-      await res({
+      res({
         error: 'validation error.',
         message: '適切な目的が選択されていません。',
         statusCode: VALIDATION_ERROR_STATUS,
@@ -45,20 +45,20 @@ module.exports = async function(fastify, opt, next) {
       reply,
       VALIDATION_ERROR_STATUS);
 
-      return false;
+      // return false;
     }
 
     entry(req.body)
-      .then(response => response(response, reply))
-      .catch();
+      .then(response => res(response, reply))
+      .catch(e => fastify.logger.error(e));
   });
 
-  fastify.post('/update', UPDATE_SCHEMA, async (req, reply) => {
-    update(req.body).then(response => response(response, reply));
+  fastify.post('/update', UPDATE_SCHEMA, (req, reply) => {
+    update(req.body).then(response => res(response, reply));
   });
 
   fastify.post('/exit', OUT_SCHEMA, async (req, reply) => {
-    exit(req.body).then(response => response(response, reply));
+    exit(req.body).then(response => res(response, reply));
   });
 
   fastify.get('/users/:date', USERS_SCHEMA, async (req, reply) => {
