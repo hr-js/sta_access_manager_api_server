@@ -13,7 +13,8 @@
     "coverage:http": "NODE_ENV=TEST jest --coverage"
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "testURL": "http://localhost/"
   },
   "author": "t-kurihara",
   "license": "MIT",
