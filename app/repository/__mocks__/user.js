@@ -1,7 +1,6 @@
 'use strict';
 const register = async () => {
   return {
-    statusCode: 0,
     id: '0000001',
     user: {
       mail: 'john.doe@test.jp',

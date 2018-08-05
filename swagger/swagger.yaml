@@ -188,11 +188,8 @@ paths:
             type: object
             required:
               - id
-              - purpose
             properties:
               id:
-                type: string
-              purpose:
                 type: string
       tags:
         - User
