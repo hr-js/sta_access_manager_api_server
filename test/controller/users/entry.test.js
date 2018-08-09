@@ -12,7 +12,7 @@ test('/entryの正常系。レスポンスが200かつ正しい値が帰って�
   await requestHelper.post('/entry', payload, response => {
     const payload = JSON.parse(response.payload);
 
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(201);
     expect(typeof payload.id).toBe('string');
     expect(typeof payload.user.name).toBe('string');
     expect(payload.user.isEntry).not.toBeFalsy();
