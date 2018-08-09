@@ -19,15 +19,12 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./data
+      - ./prod/data:/usr/share/elasticsearch/data
+      - ./prod/logs:/usr/share/elasticsearch/logs
     ports:
       - 9200:9200
     networks:
       - esnet
-
-volumes:
-  esdata1:
-    driver: local
 
 networks:
   esnet:
