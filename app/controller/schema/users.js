@@ -103,6 +103,12 @@ module.exports = {
           type: 'object',
           properties: {
             id,
+            user: {
+              type: 'object',
+              properties: {
+                mail,
+              }
+            }
           }
         },
         '4xx': CLIENT_ERROR_RESPONSE,
