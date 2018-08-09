@@ -9,12 +9,13 @@ const {
   updateVisitor,
   aggregateVistorsByPurposeAndDate
 } = require('./dao');
-const { unsupportedPurpose, unregisteredUser } = require('./constraint/error');
+const errorMessage = require('./constraint/error');
+
 
 const exit = async data => {
   let users = await findUserById(data.id);
   if (users.hits.hits.length === 0) {
-    return unregisteredUser(data.id);
+    throw new Error(errorMessage.unregisteredUser);
   }
   let user = users.hits.hits[0]._source.user;
   let updateResult = await updateVisitor(user);
@@ -35,11 +36,11 @@ const exit = async data => {
 const entry = async data => {
   let users = await findUserById(data.id);
   if (users.hits.hits.length === 0) {
-    return unregisteredUser(data.id);
+    throw new Error(errorMessage.unregisteredUser);
   }
   let purpose = data.purpose;
   if (!PURPOSE.includes(purpose)) {
-    return unsupportedPurpose(data.id);
+    throw new Error(errorMessage.unsupportedPurpose);
   }
   let user = users.hits.hits[0]._source.user;
   await insertVistor(user, purpose);
