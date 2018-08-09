@@ -4,9 +4,9 @@
   "main": "app.js",
   "repository": "https://github.com/hr-js/sam_api_app.git",
   "scripts": {
-    "prod:http": "node ./app/app.js",
+    "prod:http": "ES_HOST=elasticsearch node ./app/app.js",
     "prod:http2": "NODE_HTTP=http2 node ./app/app.js",
-    "dev:http": "NODE_ENV=DEVELOP node ./app/app.js",
+    "dev:http": "NODE_ENV=DEVELOP ES_HOST=localhost node ./app/app.js",
     "dev:http2": "NODE_HTTP=http2 NODE_ENV=DEVELOP node ./app/app.js",
     "test:http": "NODE_ENV=TEST jest",
     "test:http2": "NODE_ENV=TEST NODE_HTTP=http2 jest",
