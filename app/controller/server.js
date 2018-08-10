@@ -30,29 +30,22 @@ const buildServer = async () => {
     routePrefix: '/documentation',
     swagger: {
       info: {
-        title: 'Test swagger',
-        description: 'testing the fastify swagger api',
+        title: 'sta_access_manager',
+        description: 'sta_access_manager => 入館画面用',
         version: '0.1.0'
       },
       externalDocs: {
-        url: 'https://swagger.io',
-        description: 'Find more info here'
+        url: 'https://github.com/hr-js/sam_api_server',
+        description: 'API source'
       },
       host: 'localhost',
       schemes: ['http'],
       consumes: ['application/json'],
       produces: ['application/json'],
       tags: [
-        { name: 'user', description: 'User related end-points' },
-        { name: 'code', description: 'Code related end-points' }
+        { name: 'user', description: 'member info' },
+        { name: 'visitor', description: 'member visit info' }
       ],
-      securityDefinitions: {
-        apiKey: {
-          type: 'apiKey',
-          name: 'apiKey',
-          in: 'header'
-        }
-      }
     },
     exposeRoute: true
   });

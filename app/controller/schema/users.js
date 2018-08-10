@@ -18,6 +18,8 @@ const {
 module.exports = {
   REGISTOR_SCHEMA: {
     schema: {
+      tags: ['user'],
+      description: 'The user to create.',
       body: {
         type: 'object',
         required: ['id', 'user'],
@@ -55,6 +57,8 @@ module.exports = {
   },
   ENTRY_SCHEMA: {
     schema: {
+      tags: ['visitor'],
+      description: '入室処理',
       body: {
         type: 'object',
         required: ['id', 'purpose'],
@@ -85,6 +89,8 @@ module.exports = {
   },
   UPDATE_SCHEMA: {
     schema: {
+      tags: ['user'],
+      description: 'Update user info.',
       body: {
         type: 'object',
         required: ['id','user'],
@@ -119,6 +125,8 @@ module.exports = {
   },
   OUT_SCHEMA: {
     schema: {
+      tags: ['visitor'],
+      description: '退出処理',
       body: {
         type: 'object',
         required: ['id'],
