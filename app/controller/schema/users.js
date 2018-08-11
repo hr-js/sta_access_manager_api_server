@@ -30,28 +30,28 @@ module.exports = {
             required: ['mail', 'name'],
             properties: {
               mail,
-              name: { type: 'string' }
+              name: {type: 'string'}
             }
           }
         },
-        response: {
-          '2xx': {
-            type: 'object',
-            properties: {
-              id,
-              user: {
-                type: 'object',
-                properties: {
-                  mail,
-                  name: { type: 'string' }
-                }
+      },
+      response: {
+        '200': {
+          type: 'object',
+          properties: {
+            id,
+            user: {
+              type: 'object',
+              properties: {
+                mail,
+                name: { type: 'string' }
               }
             }
-          },
-          '4xx': CLIENT_ERROR_RESPONSE,
-          '400': VALIDATION_ERROR_RESPONSE,
-          '500': INTERNAL_SERVER_ERROR_RESPONSE,
+          }
         },
+        '4xx': CLIENT_ERROR_RESPONSE,
+        '400': VALIDATION_ERROR_RESPONSE,
+        '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },
   },
