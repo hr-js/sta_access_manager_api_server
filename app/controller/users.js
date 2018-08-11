@@ -1,6 +1,6 @@
 'use strict';
 const {
-  REGISTOR_SCHEMA,
+  REGISTER_SCHEMA,
   UPDATE_SCHEMA,
   ENTRY_SCHEMA,
   OUT_SCHEMA,
@@ -48,7 +48,7 @@ const createResponseDate = async (executeDaoMethod, params, successStatus, error
 
 module.exports = async function(fastify, opt, next) {
 
-  fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
+  fastify.post('/register', REGISTER_SCHEMA, async (req, reply) => {
     const response = await createResponseDate(register, req.body, SUCCESS_STATUS, VALIDATED_OR_FAILED_CODE);
 
     reply

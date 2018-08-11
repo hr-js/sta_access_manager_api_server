@@ -16,7 +16,7 @@ const {
 } = require('./common/error.js');
 
 module.exports = {
-  REGISTOR_SCHEMA: {
+  REGISTER_SCHEMA: {
     schema: {
       tags: ['user'],
       description: 'The user to create.',
@@ -163,7 +163,7 @@ module.exports = {
             type: 'object',
             properties: {
               name: { type: 'string' },
-              porpose: { type: 'string' },
+              purpose: { type: 'string' },
               isEntry: { type: 'boolean' },
             },
           },
