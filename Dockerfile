@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN yarn install
 COPY . .
 EXPOSE 3000
-CMD ["yarn","dev:http"]
+CMD ["yarn","prod:http"]

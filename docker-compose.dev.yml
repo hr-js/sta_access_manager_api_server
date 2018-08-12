@@ -1,12 +1,5 @@
 version: '3'
 services:
-  sam:
-    build: .
-    container_name: sam
-    ports:
-      - "3000:3000"
-    networks: 
-      - esnet
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
     container_name: elasticsearch
@@ -19,12 +12,13 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./prod/data:/usr/share/elasticsearch/data
-      - ./prod/logs:/usr/share/elasticsearch/logs
+      - ./dev/data:/usr/share/elasticsearch/data
+      - ./dev/logs:/usr/share/elasticsearch/logs
     ports:
       - 9200:9200
     networks:
-      - esnet
+      - dev
 
 networks:
-  esnet:
+  dev: 
+    driver: bridge
