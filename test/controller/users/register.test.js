@@ -1,6 +1,7 @@
 'use strict';
 const requestHelper = require('../helper/requestHelper');
 
+jest.mock('../../../app/controller/server');
 jest.mock('../../../app/repository/user');
 
 /**

@@ -3,42 +3,44 @@ info:
   title: sta_access_manager
   description: sta_access_manager => 入館画面用
   version: 1.0.0
-host: api.uber.com
+host: hostname
 schemes:
-  - https
+- https
+- http
 basePath: /
 produces:
-  - application/json
+- application/json
 paths:
-  /registor:
+  /register:
     post:
       summary: ユーザー/ICカード登録
       parameters:
-        - in: body
-          name: user
-          description: The user to create.
-          schema:
-            type: object
-            required:
-              - id
-              - user
-            properties:
-              id:
-                type: string
-              user:
-                type: object
-                required:
-                  - mail
-                  - name
-                properties:
-                  mail:
-                    type: string
-                  name:
-                    type: string
+      - in: body
+        name: user
+        description: The user to create.
+        schema:
+          type: object
+          required:
+          - id
+          - user
+          properties:
+            id:
+              description: The user to create.
+              type: string
+            user:
+              type: object
+              required:
+              - mail
+              - name
+              properties:
+                mail:
+                  type: string
+                name:
+                  type: string
       tags:
-        - User
+      - User
       responses:
-        200:
+        '201':
           description: 登録成功
           schema:
             type: object
@@ -52,8 +54,8 @@ paths:
                     type: string
                   name:
                     type: string
-        400:
-          description: 登録済
+        '400':
+          description: bad request
           schema:
             type: object
             properties:
@@ -66,7 +68,7 @@ paths:
                     type: string
                   name:
                     type: string
-        500:
+        '500':
           description: サーバー側の処理に問題が発生
           schema:
             $ref: '#/definitions/ServerError'
@@ -74,28 +76,28 @@ paths:
     put:
       summary: ユーザー情報更新
       parameters:
-        - in: body
-          name: user
-          description: ユーザー情報更新
-          schema:
-            type: object
-            required:
-              - id
-              - user
-            properties:
-              id:
-                type: string
-              user:
-                type: object
-                required:
-                  - mail
-                properties:
-                  mail:
-                    type: string
+      - in: body
+        name: user
+        description: ユーザー情報更新
+        schema:
+          type: object
+          required:
+          - id
+          - user
+          properties:
+            id:
+              type: string
+            user:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
       tags:
-        - User
+      - User
       responses:
-        200:
+        '200':
           description: 更新成功
           schema:
             type: object
@@ -105,10 +107,10 @@ paths:
               user:
                 type: object
                 properties:
-                  mail:
+                  name:
                     type: string
-        400:
-          description: ユーザー未登録
+        '400':
+          description: bad request
           schema:
             type: object
             properties:
@@ -121,31 +123,32 @@ paths:
                     type: string
                   name:
                     type: string
-        500:
+        '500':
           description: サーバー側の処理に問題が発生
           schema:
             $ref: '#/definitions/ServerError'
   /entry:
     post:
-      summary: "入室処理"
+      summary: 入室処理
       parameters:
-        - in: body
-          name: user
-          description: 入室処理
-          schema:
-            type: object
-            required:
-              - id
-              - purpose
-            properties:
-              id:
-                type: string
-              purpose:
-                type: string
+      - in: body
+        name: user
+        description: 入室処理
+        schema:
+          type: object
+          required:
+          - id
+          - purpose
+          properties:
+            id:
+              type: string
+            purpose:
+              type: string
+              enum: [WORK, CIRCLE, STUDY, MEET_UP, OTHER]
       tags:
-        - User
+      - User
       responses:
-        201:
+        '201':
           description: 入室処理成功
           schema:
             type: object
@@ -159,21 +162,11 @@ paths:
                     type: string
                   isEntry:
                     type: boolean
-        400:
+        '400':
           description: 入室済
           schema:
-            type: object
-            properties:
-              id:
-                type: string
-              user:
-                type: object
-                properties:
-                  isEntry:
-                    type: boolean
-                  purpose:
-                    type: string
-        500:
+            $ref: '#/definitions/ServerError'
+        '500':
           description: サーバー側の処理に問題が発生
           schema:
             $ref: '#/definitions/ServerError'
@@ -181,23 +174,20 @@ paths:
     post:
       summary: 入室処理
       parameters:
-        - in: body
-          name: user
-          description: 入室処理
-          schema:
-            type: object
-            required:
-              - id
-              - purpose
-            properties:
-              id:
-                type: string
-              purpose:
-                type: string
+      - in: body
+        name: user
+        description: 入室処理
+        schema:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
       tags:
-        - User
+      - User
       responses:
-        201:
+        '201':
           description: 入室処理成功
           schema:
             type: object
@@ -211,25 +201,15 @@ paths:
                     type: string
                   isEntry:
                     type: boolean
-        400:
-          description: 入室済
+        '400':
+          description: bad request
           schema:
-            type: object
-            properties:
-              id:
-                type: string
-              user:
-                type: object
-                properties:
-                  isEntry:
-                    type: boolean
-                  purpose:
-                    type: string
-        500:
+            $ref: '#/definitions/ServerError'
+        '500':
           description: サーバー側の処理に問題が発生
           schema:
             $ref: '#/definitions/ServerError'
-  /user/{id}/status:
+  '/user/{id}/status':
     get:
       summary: 入室処理
       parameters:
@@ -239,9 +219,9 @@ paths:
         required: true
         description: 指定されたidのユーザーが登録済か返す
       tags:
-        - User
+      - User
       responses:
-        200:
+        '200':
           description: 登録済み
           schema:
             type: object
@@ -253,14 +233,73 @@ paths:
                 properties:
                   isEntry:
                     type: boolean
-        400:
-          description: 未登録
+        '400':
+          description: bad request
           schema:
             type: object
             properties:
               id:
                 type: string
-        500:
+        '404':
+          description: not found
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        '500':
+          description: サーバー側の処理に問題が発生
+          schema:
+            $ref: '#/definitions/ServerError'
+  '/users':
+    get:
+      summary: 参加者一覧
+      parameters:
+      - in: query
+        name: from
+        type: string
+        description: YYYYMMDD
+      - in: query
+        name: to
+        type: string
+        description: YYYYMMDD
+      tags:
+      - User
+      responses:
+        '200':
+          description: 登録済み
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                user:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    isEntry:
+                      type: boolean
+                    purpose:
+                      type: string
+                      enum: [WORK, CIRCLE, STUDY, MEET_UP, OTHER]
+        '400':
+          description: bad request
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        '404':
+          description: not found
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        '500':
           description: サーバー側の処理に問題が発生
           schema:
             $ref: '#/definitions/ServerError'

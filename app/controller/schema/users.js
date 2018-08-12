@@ -1,19 +1,39 @@
 'use strict';
 
-const id = {
-  type: 'string',
-};
-
-const mail = {
-  type: 'string',
-  pattern: '^([a-za-z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9\\._-]+)*$',
-};
-
 const {
   CLIENT_ERROR_RESPONSE,
   VALIDATION_ERROR_RESPONSE,
   INTERNAL_SERVER_ERROR_RESPONSE,
 } = require('./common/error.js');
+
+const PURPOSE = require('../../common/constraint/purpose');
+
+const id = {
+  type: 'string',
+  description: 'user\'s id'
+};
+
+const mail = {
+  type: 'string',
+  description: 'user\'s email',
+  pattern: '^([a-za-z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9\\._-]+)*$',
+};
+
+const name = {
+  type: 'string',
+  description: 'user\'s name',
+};
+
+const isEntry = {
+  type: 'boolean',
+  description: 'Whether user is coming or not',
+};
+
+const purpose = {
+  type: 'string',
+  description: 'The purpose to visit',
+  enum: PURPOSE
+};
 
 module.exports = {
   REGISTER_SCHEMA: {
@@ -27,24 +47,26 @@ module.exports = {
           id,
           user: {
             type: 'object',
+            description: 'The user\'s info to create',
             required: ['mail', 'name'],
             properties: {
               mail,
-              name: {type: 'string'}
+              name,
             }
           }
         },
       },
       response: {
-        '200': {
+        '201': {
           type: 'object',
           properties: {
             id,
             user: {
+              description: 'The created user\'s info',
               type: 'object',
               properties: {
                 mail,
-                name: { type: 'string' }
+                name,
               }
             }
           }
@@ -64,26 +86,26 @@ module.exports = {
         required: ['id', 'purpose'],
         properties: {
           id,
-          purpose: { type: 'string' }
-        }
-      },
-      response: {
-        '2xx': {
-          type: 'object',
-          properties: {
-            id,
-            user: {
-              type: 'object',
-              properties: {
-                name: { type: 'string' },
-                isEntry: { type: 'boolean' },
+          purpose,
+        },
+        response: {
+          '201': {
+            type: 'object',
+            properties: {
+              id,
+              user: {
+                type: 'object',
+                properties: {
+                  name,
+                  isEntry,
+                },
               },
             },
           },
+          '4xx': CLIENT_ERROR_RESPONSE,
+          '400': VALIDATION_ERROR_RESPONSE,
+          '500': INTERNAL_SERVER_ERROR_RESPONSE,
         },
-        '4xx': CLIENT_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
-        '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },
   },
@@ -98,8 +120,9 @@ module.exports = {
           id,
           user: {
             type: 'object',
+            required: ['name'],
             properties: {
-              mail,
+              name,
             }
           }
         }
@@ -112,7 +135,7 @@ module.exports = {
             user: {
               type: 'object',
               properties: {
-                mail,
+                name,
               }
             }
           }
@@ -123,7 +146,7 @@ module.exports = {
       },
     },
   },
-  OUT_SCHEMA: {
+  EXIT_SCHEMA: {
     schema: {
       tags: ['visitor'],
       description: '退出処理',
@@ -140,9 +163,10 @@ module.exports = {
               id,
               user: {
                 type: 'object',
+                description: 'The user\'s info to leave.',
                 properties: {
-                  name: { type: 'string' },
-                  isEntry: {type: 'boolean'}
+                  name,
+                  isEntry,
                 }
               }
             }
@@ -162,9 +186,9 @@ module.exports = {
           items: {
             type: 'object',
             properties: {
-              name: { type: 'string' },
-              purpose: { type: 'string' },
-              isEntry: { type: 'boolean' },
+              name,
+              purpose,
+              isEntry,
             },
           },
         },

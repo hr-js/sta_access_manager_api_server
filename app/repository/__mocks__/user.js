@@ -14,7 +14,7 @@ const update = async () => {
   return {
     id: '0000001',
     user: {
-      mail: 'john.doe@test.jp',
+      name: 'some user name',
     }
   };
 };
