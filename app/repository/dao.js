@@ -24,6 +24,14 @@ const isExistIndex = async indexName => {
   return await client.indices.exists({ index: indexName });
 };
 
+const isExistIndexAndTemplate = async (indexName, templateName) => {
+  let results = await Promise.all([
+    await client.indices.exists({ index: indexName }),
+    await client.indices.existsTemplate({ name: templateName })
+  ]);
+  return { isExistIndex: results[0], isExistTemplate: results[1] };
+};
+
 const createIndex = async (indexName, type, mapping) => {
   try {
     let createdIndex = await client.indices.create({ index: indexName });
@@ -170,7 +178,7 @@ const aggregateVistorsByPurposeAndDate = async (order, to) => {
 };
 
 module.exports = {
-  isExistIndex,
+  isExistIndexAndTemplate,
   createIndex,
   createTemplate,
   findUserById,
