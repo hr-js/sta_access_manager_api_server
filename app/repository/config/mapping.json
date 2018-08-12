@@ -39,7 +39,7 @@
               "path_match":"user.name",
               "mapping":{
                "type":"text",
-               "analyzer":"kuromoji"
+               "analyzer":"standard"
               }
             }
           },
