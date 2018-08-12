@@ -4,10 +4,10 @@ module.exports = {
   exit: async () => ({
     id: '0000001',
     user: {
-      mail: 'john.doe@test.jp',
+      name: 'john.doe',
+      isEntry: false,
     },
   }),
-
   entry: async () => ({
     id: '0000001',
     user: {
@@ -15,9 +15,7 @@ module.exports = {
       isEntry: true,
     },
   }),
-
   findByDate: async () => ({
     id: 'ab'
   }),
-
 };
