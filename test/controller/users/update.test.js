@@ -13,7 +13,7 @@ test('正常系:必要な値があり、responseのステータスと値も正�
     }
   };
 
-  requestHelper.post('/update', payload, response => {
+  requestHelper.put('/update', payload, response => {
     const payload = JSON.parse(response.payload);
 
     expect(response.statusCode).toBe(200);
@@ -30,7 +30,7 @@ test('request bodyにidがない場合、statusCodeが400のレスポンスに�
     }
   };
 
-  requestHelper.post('/update', payload, response => expect(response.statusCode).toBe(400));
+  requestHelper.put('/update', payload, response => expect(response.statusCode).toBe(400));
 });
 
 test('request bodyにuser.nameない場合、statusCodeが400のレスポンスになる', async () => {
@@ -40,6 +40,6 @@ test('request bodyにuser.nameない場合、statusCodeが400のレスポンス�
     user: {},
   };
 
-  requestHelper.post('/update', payload, response => expect(response.statusCode).toBe(400));
+  requestHelper.put('/update', payload, response => expect(response.statusCode).toBe(400));
 });
 
