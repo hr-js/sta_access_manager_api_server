@@ -172,11 +172,11 @@ paths:
             $ref: '#/definitions/ServerError'
   /exit:
     post:
-      summary: 入室処理
+      summary:  退出処理
       parameters:
       - in: body
         name: user
-        description: 入室処理
+        description: 退出者情報
         schema:
           type: object
           required:
@@ -188,7 +188,7 @@ paths:
       - User
       responses:
         '201':
-          description: 入室処理成功
+          description: 退出処理成功
           schema:
             type: object
             properties:
@@ -211,18 +211,18 @@ paths:
             $ref: '#/definitions/ServerError'
   '/user/{id}/status':
     get:
-      summary: 入室処理
+      summary: 入室確認処理
       parameters:
       - in: path
         name: id
         type: string
         required: true
-        description: 指定されたidのユーザーが登録済か返す
+        description: 指定されたidのユーザーが入室済か返す
       tags:
       - User
       responses:
         '200':
-          description: 登録済み
+          description: 入室済み
           schema:
             type: object
             properties:
@@ -236,17 +236,7 @@ paths:
         '400':
           description: bad request
           schema:
-            type: object
-            properties:
-              id:
-                type: string
-        '404':
-          description: not found
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
+            $ref: '#/definitions/ServerError'
         '500':
           description: サーバー側の処理に問題が発生
           schema:
@@ -267,7 +257,7 @@ paths:
       - User
       responses:
         '200':
-          description: 登録済み
+          description: 一覧取得成功
           schema:
             type: array
             items:
@@ -288,17 +278,7 @@ paths:
         '400':
           description: bad request
           schema:
-            type: object
-            properties:
-              id:
-                type: string
-        '404':
-          description: not found
-          schema:
-            type: object
-            properties:
-              id:
-                type: string
+            $ref: '#/definitions/ServerError'
         '500':
           description: サーバー側の処理に問題が発生
           schema:

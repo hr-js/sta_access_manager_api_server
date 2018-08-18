@@ -2,7 +2,7 @@
 
 const {
   CLIENT_ERROR_RESPONSE,
-  VALIDATION_ERROR_RESPONSE,
+  BAD_REQUEST_RESPONSE,
   INTERNAL_SERVER_ERROR_RESPONSE,
 } = require('./common/error');
 
@@ -66,7 +66,7 @@ module.exports = {
           },
         },
         '4xx': CLIENT_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
+        '400': BAD_REQUEST_RESPONSE,
         '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },
@@ -94,7 +94,7 @@ module.exports = {
           },
         },
         '4xx': CLIENT_ERROR_RESPONSE,
-        '400': VALIDATION_ERROR_RESPONSE,
+        '400': BAD_REQUEST_RESPONSE,
         '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
     },

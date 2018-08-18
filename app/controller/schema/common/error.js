@@ -12,16 +12,16 @@ const CLIENT_ERROR_RESPONSE = {
   },
 };
 
-const VALIDATION_ERROR_RESPONSE = {
+const BAD_REQUEST_RESPONSE = {
+  description: 'bad request',
   type: 'object',
   properties: {
-    error: { type: 'string' },
     message: { type: 'string' },
-    statusCode: { type: 'number' },
   },
 };
 
 const INTERNAL_SERVER_ERROR_RESPONSE = {
+  description: 'サーバー側の処理に問題が発生',
   type: 'object',
   properties: {
     error: {
@@ -34,7 +34,7 @@ const INTERNAL_SERVER_ERROR_RESPONSE = {
 };
 
 module.exports = {
-  VALIDATION_ERROR_RESPONSE,
+  BAD_REQUEST_RESPONSE,
   CLIENT_ERROR_RESPONSE,
   INTERNAL_SERVER_ERROR_RESPONSE,
 };

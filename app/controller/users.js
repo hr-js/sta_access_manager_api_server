@@ -4,6 +4,7 @@ const {
   UPDATE_SCHEMA,
   ENTRY_SCHEMA,
   EXIT_SCHEMA,
+  USER_STATUS_SCHEMA,
   USERS_SCHEMA,
 } = require('./schema/users');
 
@@ -63,7 +64,7 @@ module.exports = async function(fastify, opt, next) {
       .send(response.data);
   });
 
-  fastify.post('/update', UPDATE_SCHEMA, async (req, reply) => {
+  fastify.put('/update', UPDATE_SCHEMA, async (req, reply) => {
     const response = await createResponseDate(update, req.body, SUCCESS_STATUS, VALIDATED_OR_FAILED_CODE);
     reply
       .code(response.status)
@@ -77,7 +78,7 @@ module.exports = async function(fastify, opt, next) {
       .send(response.data);
   });
 
-  fastify.get('/user/:id/status',async (req, reply) => {
+  fastify.get('/user/:id/status', USER_STATUS_SCHEMA, async (req, reply) => {
     // TODO: Daoのメソッド決定後実装.
     // const response = await createResponseDate(exit, req.body, SUCCESS_STATUS, VALIDATION_ERROR_STATUS);
     // reply
