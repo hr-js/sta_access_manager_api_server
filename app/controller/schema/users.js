@@ -180,24 +180,30 @@ module.exports = {
     schema: {
       tags: ['visitor'],
       description: '入室確認処理',
-      querystring: {
-        id: { type: 'string' },
+      params: {
+        type: 'object',
+        properties: {
+          id,
+        },
       },
       response: {
         '200': {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              name,
-              purpose,
-              isEntry,
-            },
+          description: '入室状況取得成功',
+          type: 'object',
+          properties: {
+            id,
+            user: {
+              description: '入室者情報',
+              type: 'object',
+              properties: {
+                isEntry,
+              }
+            }
           },
         },
-        '400': BAD_REQUEST_RESPONSE,
-        '500': INTERNAL_SERVER_ERROR_RESPONSE,
       },
+      '400': BAD_REQUEST_RESPONSE,
+      '500': INTERNAL_SERVER_ERROR_RESPONSE,
     },
   },
   USERS_SCHEMA: {
@@ -219,9 +225,16 @@ module.exports = {
           items: {
             type: 'object',
             properties: {
-              name,
-              purpose,
-              isEntry,
+              id,
+              user: {
+                description: '入室者情報',
+                type: 'object',
+                properties: {
+                  name,
+                  purpose,
+                  isEntry,
+                }
+              }
             },
           },
         },
