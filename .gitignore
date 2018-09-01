@@ -1,4 +1,9 @@
 https/*
 node_modules
 .vscode
+# elasticsarchのデータ格納場所
+# 開発用
+dev
+# 本番用
+prod
 

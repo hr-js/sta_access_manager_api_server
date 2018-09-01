@@ -1,7 +1,7 @@
 'use strict';
 const elasticsearch = require('elasticsearch');
 const client = new elasticsearch.Client({
-  host: 'http://elasticsearch:9200',
+  host: `http://${process.env.ES_HOST}:9200`,
   log: 'error'
 });
 const moment = require('moment');
