@@ -26,6 +26,30 @@ const getOpt = () => {
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
 
+  fastify.register(require('fastify-swagger'), {
+    routePrefix: '/documentation',
+    swagger: {
+      info: {
+        title: 'sta_access_manager',
+        description: 'sta_access_manager => 入館画面用',
+        version: '0.1.0'
+      },
+      externalDocs: {
+        url: 'https://github.com/hr-js/sam_api_server',
+        description: 'API source'
+      },
+      host: 'localhost',
+      schemes: ['http'],
+      consumes: ['application/json'],
+      produces: ['application/json'],
+      tags: [
+        { name: 'user', description: 'member info' },
+        { name: 'visitor', description: 'member visit info' }
+      ],
+    },
+    exposeRoute: true
+  });
+
   fastify.register(await require('./users'), { logLevel: 'error' });
 
   fastify.register(await require('./management'), { logLevel: 'error' });
@@ -35,7 +59,7 @@ const buildServer = async () => {
     next();
   });
 
-  await init();
+  // await init();
 
   return fastify;
 };

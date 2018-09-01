@@ -1,9 +1,10 @@
 'use strict';
 const {
-  REGISTOR_SCHEMA,
+  REGISTER_SCHEMA,
   UPDATE_SCHEMA,
   ENTRY_SCHEMA,
-  OUT_SCHEMA,
+  EXIT_SCHEMA,
+  USER_STATUS_SCHEMA,
   USERS_SCHEMA,
 } = require('./schema/users');
 
@@ -17,8 +18,6 @@ const {
   entry,
   findByDate,
 } = require('../repository/visitor');
-
-const PURPOSE = require('../common/constraint/purpose');
 
 // TODO: 別のファイルに切り出す.
 const SUCCESS_STATUS = 200;
@@ -48,7 +47,7 @@ const createResponseDate = async (executeDaoMethod, params, successStatus, error
 
 module.exports = async function(fastify, opt, next) {
 
-  fastify.post('/register', REGISTOR_SCHEMA, async (req, reply) => {
+  fastify.post('/register', REGISTER_SCHEMA, async (req, reply) => {
     const response = await createResponseDate(register, req.body, SUCCESS_STATUS, VALIDATED_OR_FAILED_CODE);
 
     reply
@@ -58,15 +57,6 @@ module.exports = async function(fastify, opt, next) {
   });
 
   fastify.post('/entry', ENTRY_SCHEMA, async (req, reply) => {
-    if(!PURPOSE.includes(req.body.purpose)) {
-      reply
-        .code(VALIDATED_OR_FAILED_CODE)
-        .send({
-          error: 'validation error.',
-          message: '適切な目的が選択されていません。',
-          statusCode: VALIDATED_OR_FAILED_CODE,
-        });
-    }
 
     const response = await createResponseDate(entry, req.body, CREATED_STATUS, VALIDATED_OR_FAILED_CODE);
     reply
@@ -74,21 +64,21 @@ module.exports = async function(fastify, opt, next) {
       .send(response.data);
   });
 
-  fastify.post('/update', UPDATE_SCHEMA, async (req, reply) => {
+  fastify.put('/update', UPDATE_SCHEMA, async (req, reply) => {
     const response = await createResponseDate(update, req.body, SUCCESS_STATUS, VALIDATED_OR_FAILED_CODE);
     reply
       .code(response.status)
       .send(response.data);
   });
 
-  fastify.post('/exit', OUT_SCHEMA, async (req, reply) => {
+  fastify.post('/exit', EXIT_SCHEMA, async (req, reply) => {
     const response = await createResponseDate(exit, req.body, SUCCESS_STATUS, VALIDATED_OR_FAILED_CODE);
     reply
       .code(response.status)
       .send(response.data);
   });
 
-  fastify.get('/user/:id/status',async (req, reply) => {
+  fastify.get('/user/:id/status', USER_STATUS_SCHEMA, async (req, reply) => {
     // TODO: Daoのメソッド決定後実装.
     // const response = await createResponseDate(exit, req.body, SUCCESS_STATUS, VALIDATION_ERROR_STATUS);
     // reply
