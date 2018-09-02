@@ -25,11 +25,11 @@ const isExistIndex = async indexName => {
 };
 
 const isExistIndexAndTemplate = async (indexName, templateName) => {
-  let results = await Promise.all([
+  const [isExistIndex, isExistTemplate] = await Promise.all([
     await client.indices.exists({ index: indexName }),
     await client.indices.existsTemplate({ name: templateName })
   ]);
-  return { isExistIndex: results[0], isExistTemplate: results[1] };
+  return { isExistIndex, isExistTemplate };
 };
 
 const createIndex = async (indexName, type, mapping) => {
