@@ -25,6 +25,9 @@ const getOpt = () => {
 
 const buildServer = async () => {
   const fastify = (await require('fastify'))(getOpt());
+  fastify.register(require('fastify-cors'), {
+    origin: true
+  });
 
   fastify.register(require('fastify-swagger'), {
     routePrefix: '/documentation',

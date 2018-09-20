@@ -21,6 +21,7 @@
   "dependencies": {
     "elasticsearch": "^14.1.0",
     "fastify": "^1.7.0",
+    "fastify-cors": "^0.1.0",
     "fastify-swagger": "^0.14.0",
     "moment": "^2.20.1"
   },
