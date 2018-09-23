@@ -1,6 +1,6 @@
 'user strict';
 const { findUserById, insertUser, updateUser } = require('./dao');
-const errorMessage= require('./constraint/error');
+const errorMessage = require('./constraint/error');
 
 const register = async data => {
   let result = await findUserById(data.id);
