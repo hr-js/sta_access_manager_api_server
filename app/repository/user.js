@@ -1,11 +1,11 @@
 'user strict';
 const { findUserById, insertUser, updateUser } = require('./dao');
-const { duplicateUser, unregisteredUser } = require('./constraint/error');
+const errorMessage = require('./constraint/error');
 
 const register = async data => {
   let result = await findUserById(data.id);
   if (result.hits.hits.length > 0) {
-    return duplicateUser(data.user);
+    throw new Error(errorMessage.duplicateUser);
   }
   await insertUser(data.id, data.user);
   return {
@@ -16,7 +16,7 @@ const register = async data => {
 const update = async data => {
   let result = await updateUser(data.id, data.user);
   if (result.total === 0) {
-    return unregisteredUser(data.id);
+    throw new Error(errorMessage.unregisteredUser);
   }
   return {
     id: data.id,
