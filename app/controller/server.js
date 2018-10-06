@@ -57,6 +57,8 @@ const buildServer = async () => {
 
   fastify.register(await require('./management'), { logLevel: 'error' });
 
+  fastify.register(await require('./index'), { logLevel: 'error' });
+
   fastify.addHook('onRequest', (req, res, next) => {
     // fastify.log.info(req);
     next();
