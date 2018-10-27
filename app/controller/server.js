@@ -41,7 +41,7 @@ const buildServer = async () => {
         url: 'https://github.com/hr-js/sam_api_server',
         description: 'API source'
       },
-      host: 'localhost',
+      host: 'localhost:3000',
       schemes: ['http'],
       consumes: ['application/json'],
       produces: ['application/json'],
@@ -64,7 +64,7 @@ const buildServer = async () => {
     next();
   });
 
-  // await init();
+  await init();
 
   return fastify;
 };

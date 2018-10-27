@@ -6,7 +6,7 @@
   "scripts": {
     "prod:http": "ES_HOST=elasticsearch node ./app/app.js",
     "prod:http2": "NODE_HTTP=http2 node ./app/app.js",
-    "dev:http": "NODE_ENV=DEVELOP node-dev ./app/app.js",
+    "dev:http": "ES_HOST=localhost NODE_ENV=DEVELOP node-dev ./app/app.js",
     "dev:http2": "NODE_HTTP=http2 NODE_ENV=DEVELOP node-dev ./app/app.js",
     "test:http": "NODE_ENV=TEST jest",
     "test:http2": "NODE_ENV=TEST NODE_HTTP=http2 jest",
