@@ -119,8 +119,9 @@ module.exports = {
           id,
           user: {
             type: 'object',
-            required: ['name'],
+            required: ['mail'],
             properties: {
+              mail,
               name,
             }
           }

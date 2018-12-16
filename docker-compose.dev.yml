@@ -18,6 +18,14 @@ services:
       - 9200:9200
     networks:
       - dev
+  dynamodb:
+    image: amazon/dynamodb-local
+    container_name: dynamodb_dev
+    ports:
+      - "8000:8000"
+    command: -jar DynamoDBLocal.jar -sharedDb
+    networks:
+      - dev
 
 networks:
   dev: 

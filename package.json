@@ -19,6 +19,7 @@
   "author": "t-kurihara",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.355.0",
     "elasticsearch": "^14.1.0",
     "fastify": "^1.7.0",
     "fastify-cors": "^0.1.0",
