@@ -1,9 +1,7 @@
 'use strict';
 const PURPOSE = require('../common/constraint/purpose');
-const ORDER = require('./constraint/order');
 // const locale = require('moment')().local('ja');
 const moment = require('moment');
-const { aggregateVistorsByPurposeAndDate } = require('./dao');
 
 const {
   findUserById,
@@ -167,27 +165,9 @@ const findByRecent = async (today = moment().local('ja')) => {
   return await findByRecent(today.weekday(-8));
 };
 
-const aggregateByPurposeAndDate = async (order, to) => {
-  if (!ORDER.includes(order)) {
-    order = 'desc';
-  }
-  let results = await aggregateVistorsByPurposeAndDate(order, to);
-  if (!results.aggregations.date.buckets.length) {
-    return [];
-  }
-  return results.aggregations.date.buckets.map(bucket => {
-    let purpose = {};
-    bucket.purpose.buckets.map(bucket => {
-      purpose[bucket.key.toLowerCase()] = bucket.doc_count;
-    });
-    return { date: bucket.key_as_string, purpose };
-  });
-};
-
 module.exports = {
   exit,
   entry,
   findByDate,
-  aggregateByPurposeAndDate,
   findByRecent
 };
